@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "buf/validate/validate.proto";
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+  rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse);
+}
+
+message Credentials {
+  string email = 1 [
+    (buf.validate.field).string.email = true,
+    (buf.validate.field).string.max_len = 254,
+    (buf.validate.field).string.min_len = 3
+  ];
+  string password = 2 [
+    (buf.validate.field).string.min_len = 8,
+    (buf.validate.field).string.pattern = "^[A-Za-z\\d@$!%*#?&]*[A-Za-z][A-Za-z\\d@$!%*#?&]*[\\d][A-Za-z\\d@$!%*#?&]*$"
+  ];
+}
+
+message RegisterRequest {
+  string name = 1 [(buf.validate.field).string.min_len = 6];
+  int64 age = 2 [(buf.validate.field).int64.gt = 1];
+  Credentials credentials = 3 [(buf.validate.field).required = true];
+}
+
+message RegisterResponse {
+  string user_id = 1;
+}
+
+message LoginRequest {
+  Credentials credentials = 1 [(buf.validate.field).required = true];
+  int32 app_id = 3 [(buf.validate.field).int32.gt = 0];
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message LogoutRequest {
+  string token = 1 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.pattern = "^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$"
+  ];
+}
+
+message LogoutResponse {
+  bool success = 1;
+}
+
+message IsAdminRequest {
+  string user_id = 1 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message IsAdminResponse {
+  bool is_admin = 1;
+}
