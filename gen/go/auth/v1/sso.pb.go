@@ -231,8 +231,11 @@ func (x *LoginRequest) GetAppId() int32 {
 }
 
 type LoginResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in auth/v1/sso.proto.
+	Token         string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	AccessToken   string `protobuf:"bytes,2,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken  string `protobuf:"bytes,3,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -267,9 +270,24 @@ func (*LoginResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_sso_proto_rawDescGZIP(), []int{4}
 }
 
+// Deprecated: Marked as deprecated in auth/v1/sso.proto.
 func (x *LoginResponse) GetToken() string {
 	if x != nil {
 		return x.Token
+	}
+	return ""
+}
+
+func (x *LoginResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *LoginResponse) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -466,9 +484,11 @@ const file_auth_v1_sso_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"n\n" +
 	"\fLoginRequest\x12>\n" +
 	"\vcredentials\x18\x01 \x01(\v2\x14.auth.v1.CredentialsB\x06\xbaH\x03\xc8\x01\x01R\vcredentials\x12\x1e\n" +
-	"\x06app_id\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x05appId\"%\n" +
-	"\rLoginResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"`\n" +
+	"\x06app_id\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x05appId\"q\n" +
+	"\rLoginResponse\x12\x18\n" +
+	"\x05token\x18\x01 \x01(\tB\x02\x18\x01R\x05token\x12!\n" +
+	"\faccess_token\x18\x02 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"`\n" +
 	"\rLogoutRequest\x12O\n" +
 	"\x05token\x18\x01 \x01(\tB9\xbaH6r4\x10\x0120^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$R\x05token\"*\n" +
 	"\x0eLogoutResponse\x12\x18\n" +
