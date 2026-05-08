@@ -293,8 +293,9 @@ func (x *LoginResponse) GetRefreshToken() string {
 }
 
 type LogoutRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in auth/v1/sso.proto.
+	Token         string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -329,6 +330,7 @@ func (*LogoutRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_sso_proto_rawDescGZIP(), []int{5}
 }
 
+// Deprecated: Marked as deprecated in auth/v1/sso.proto.
 func (x *LogoutRequest) GetToken() string {
 	if x != nil {
 		return x.Token
@@ -337,8 +339,9 @@ func (x *LogoutRequest) GetToken() string {
 }
 
 type LogoutResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in auth/v1/sso.proto.
+	Success       bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -373,6 +376,7 @@ func (*LogoutResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_sso_proto_rawDescGZIP(), []int{6}
 }
 
+// Deprecated: Marked as deprecated in auth/v1/sso.proto.
 func (x *LogoutResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
@@ -425,8 +429,9 @@ func (x *IsAdminRequest) GetUserId() string {
 }
 
 type IsAdminResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	IsAdmin       bool                   `protobuf:"varint,1,opt,name=is_admin,json=isAdmin,proto3" json:"is_admin,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in auth/v1/sso.proto.
+	IsAdmin       bool `protobuf:"varint,1,opt,name=is_admin,json=isAdmin,proto3" json:"is_admin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -461,6 +466,7 @@ func (*IsAdminResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_sso_proto_rawDescGZIP(), []int{8}
 }
 
+// Deprecated: Marked as deprecated in auth/v1/sso.proto.
 func (x *IsAdminResponse) GetIsAdmin() bool {
 	if x != nil {
 		return x.IsAdmin
@@ -488,16 +494,16 @@ const file_auth_v1_sso_proto_rawDesc = "" +
 	"\rLoginResponse\x12\x18\n" +
 	"\x05token\x18\x01 \x01(\tB\x02\x18\x01R\x05token\x12!\n" +
 	"\faccess_token\x18\x02 \x01(\tR\vaccessToken\x12#\n" +
-	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"`\n" +
-	"\rLogoutRequest\x12O\n" +
-	"\x05token\x18\x01 \x01(\tB9\xbaH6r4\x10\x0120^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$R\x05token\"*\n" +
-	"\x0eLogoutResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"5\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"b\n" +
+	"\rLogoutRequest\x12Q\n" +
+	"\x05token\x18\x01 \x01(\tB;\xbaH6r4\x10\x0120^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$\x18\x01R\x05token\".\n" +
+	"\x0eLogoutResponse\x12\x1c\n" +
+	"\asuccess\x18\x01 \x01(\bB\x02\x18\x01R\asuccess\"5\n" +
 	"\x0eIsAdminRequest\x12#\n" +
 	"\auser_id\x18\x01 \x01(\tB\n" +
-	"\xbaH\ar\x05\x10\x01\xb0\x01\x01R\x06userId\",\n" +
-	"\x0fIsAdminResponse\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xff\x01\n" +
+	"\xbaH\ar\x05\x10\x01\xb0\x01\x01R\x06userId\"0\n" +
+	"\x0fIsAdminResponse\x12\x1d\n" +
+	"\bis_admin\x18\x01 \x01(\bB\x02\x18\x01R\aisAdmin2\xff\x01\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x129\n" +

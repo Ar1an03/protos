@@ -47,13 +47,14 @@ message LoginResponse {
 
 message LogoutRequest {
   string token = 1 [
+    deprecated=true,
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.pattern = "^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$"
   ];
 }
 
 message LogoutResponse {
-  bool success = 1;
+  bool success = 1 [deprecated=true];
 }
 
 message IsAdminRequest {
@@ -64,5 +65,5 @@ message IsAdminRequest {
 }
 
 message IsAdminResponse {
-  bool is_admin = 1;
+  bool is_admin = 1 [deprecated=true];
 }
