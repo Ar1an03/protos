@@ -8,7 +8,9 @@ service AuthService {
   rpc Register(RegisterRequest) returns (RegisterResponse);
   rpc Login(LoginRequest) returns (LoginResponse);
   rpc Logout(LogoutRequest) returns (LogoutResponse);
-  rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse);
+  rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse) {
+    option deprecated=true;
+  };
 }
 
 message Credentials {

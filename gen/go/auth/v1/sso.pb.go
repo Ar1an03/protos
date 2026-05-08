@@ -503,12 +503,12 @@ const file_auth_v1_sso_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x01\xb0\x01\x01R\x06userId\"0\n" +
 	"\x0fIsAdminResponse\x12\x1d\n" +
-	"\bis_admin\x18\x01 \x01(\bB\x02\x18\x01R\aisAdmin2\xff\x01\n" +
+	"\bis_admin\x18\x01 \x01(\bB\x02\x18\x01R\aisAdmin2\x84\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x129\n" +
-	"\x06Logout\x12\x16.auth.v1.LogoutRequest\x1a\x17.auth.v1.LogoutResponse\x12<\n" +
-	"\aIsAdmin\x12\x17.auth.v1.IsAdminRequest\x1a\x18.auth.v1.IsAdminResponseB~\n" +
+	"\x06Logout\x12\x16.auth.v1.LogoutRequest\x1a\x17.auth.v1.LogoutResponse\x12A\n" +
+	"\aIsAdmin\x12\x17.auth.v1.IsAdminRequest\x1a\x18.auth.v1.IsAdminResponse\"\x03\x88\x02\x01B~\n" +
 	"\vcom.auth.v1B\bSsoProtoP\x01Z(github.com/Ar1an03/protos/auth/v1;authv1\xa2\x02\x03AXX\xaa\x02\aAuth.V1\xca\x02\aAuth\\V1\xe2\x02\x13Auth\\V1\\GPBMetadata\xea\x02\bAuth::V1b\x06proto3"
 
 var (
