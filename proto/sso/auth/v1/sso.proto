@@ -39,7 +39,10 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string token = 1;
+  string token = 1 [deprecated=true];
+
+  string access_token = 2;
+  string refresh_token = 3;
 }
 
 message LogoutRequest {
