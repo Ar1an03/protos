@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package upload.v1;
+
+service UploadService {
+  rpc UploadFile(stream UploadFileRequest) returns (stream UploadFileResponse);
+}
+
+message UploadFileRequest {
+  string file_id = 1;
+  bytes chunk_data = 2;
+  int64 offset = 3;
+}
+
+message UploadFileResponse {
+  string filename = 1;
+  int64 bytes_received = 2;
+  bool success = 3;
+}
