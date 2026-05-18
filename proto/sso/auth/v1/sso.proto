@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth.v1;
+package sso.auth.v1;
 
 import "buf/validate/validate.proto";
 
@@ -9,8 +9,8 @@ service AuthService {
   rpc Login(LoginRequest) returns (LoginResponse);
   rpc Logout(LogoutRequest) returns (LogoutResponse);
   rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse) {
-    option deprecated=true;
-  };
+    option deprecated = true;
+  }
   rpc Refresh(RefreshRequest) returns (RefreshResponse);
 }
 
@@ -39,13 +39,13 @@ message RegisterResponse {
 message LoginRequest {
   Credentials credentials = 1 [(buf.validate.field).required = true];
   int32 app_id = 3 [
-    deprecated=true,
+    deprecated = true,
     (buf.validate.field).int32.gt = 0
   ];
 }
 
 message LoginResponse {
-  string token = 1 [deprecated=true];
+  string token = 1 [deprecated = true];
 
   string access_token = 2;
   string refresh_token = 3;
@@ -53,14 +53,14 @@ message LoginResponse {
 
 message LogoutRequest {
   string token = 1 [
-    deprecated=true,
+    deprecated = true,
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.pattern = "^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$"
   ];
 }
 
 message LogoutResponse {
-  bool success = 1 [deprecated=true];
+  bool success = 1 [deprecated = true];
 }
 
 message IsAdminRequest {
@@ -71,11 +71,10 @@ message IsAdminRequest {
 }
 
 message IsAdminResponse {
-  bool is_admin = 1 [deprecated=true];
+  bool is_admin = 1 [deprecated = true];
 }
 
-message RefreshRequest {
-}
+message RefreshRequest {}
 
 message RefreshResponse {
   string refresh_token = 1;
