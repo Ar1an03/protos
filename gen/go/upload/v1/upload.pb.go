@@ -82,12 +82,13 @@ func (x *UploadFileRequest) GetOffset() int64 {
 }
 
 type UploadFileResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Filename      string                 `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
-	BytesReceived int64                  `protobuf:"varint,2,opt,name=bytes_received,json=bytesReceived,proto3" json:"bytes_received,omitempty"`
-	Success       bool                   `protobuf:"varint,3,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	FileId             string                 `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	BytesReceived      int64                  `protobuf:"varint,2,opt,name=bytes_received,json=bytesReceived,proto3" json:"bytes_received,omitempty"`
+	Success            bool                   `protobuf:"varint,3,opt,name=success,proto3" json:"success,omitempty"`
+	PercentByTotalSize int64                  `protobuf:"varint,4,opt,name=percent_by_total_size,json=percentByTotalSize,proto3" json:"percent_by_total_size,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *UploadFileResponse) Reset() {
@@ -120,9 +121,9 @@ func (*UploadFileResponse) Descriptor() ([]byte, []int) {
 	return file_upload_v1_upload_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *UploadFileResponse) GetFilename() string {
+func (x *UploadFileResponse) GetFileId() string {
 	if x != nil {
-		return x.Filename
+		return x.FileId
 	}
 	return ""
 }
@@ -141,6 +142,13 @@ func (x *UploadFileResponse) GetSuccess() bool {
 	return false
 }
 
+func (x *UploadFileResponse) GetPercentByTotalSize() int64 {
+	if x != nil {
+		return x.PercentByTotalSize
+	}
+	return 0
+}
+
 var File_upload_v1_upload_proto protoreflect.FileDescriptor
 
 const file_upload_v1_upload_proto_rawDesc = "" +
@@ -150,11 +158,12 @@ const file_upload_v1_upload_proto_rawDesc = "" +
 	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12\x1d\n" +
 	"\n" +
 	"chunk_data\x18\x02 \x01(\fR\tchunkData\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x03R\x06offset\"q\n" +
-	"\x12UploadFileResponse\x12\x1a\n" +
-	"\bfilename\x18\x01 \x01(\tR\bfilename\x12%\n" +
+	"\x06offset\x18\x03 \x01(\x03R\x06offset\"\xab\x01\n" +
+	"\x12UploadFileResponse\x12\x17\n" +
+	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12%\n" +
 	"\x0ebytes_received\x18\x02 \x01(\x03R\rbytesReceived\x12\x18\n" +
-	"\asuccess\x18\x03 \x01(\bR\asuccess2^\n" +
+	"\asuccess\x18\x03 \x01(\bR\asuccess\x121\n" +
+	"\x15percent_by_total_size\x18\x04 \x01(\x03R\x12percentByTotalSizeR\bfilename2^\n" +
 	"\rUploadService\x12M\n" +
 	"\n" +
 	"UploadFile\x12\x1c.upload.v1.UploadFileRequest\x1a\x1d.upload.v1.UploadFileResponse(\x010\x01B\x8f\x01\n" +
